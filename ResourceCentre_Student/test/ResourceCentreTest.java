@@ -88,13 +88,42 @@ public class ResourceCentreTest {
 	public void testDoLoanCamcorder() {
 		//fail("Not yet implemented");
 		// write your code here
+		// Item list is not null, so that item can be loaned
+		assertNotNull("Test if there is valid Camcorder arraylist to loan from", camcorderList);
+		
+		//Test that the item should not be available for loan after loaning
+		ResourceCentre.addCamcorder(camcorderList, cc1);
+		ResourceCentre.doLoanCamcorder(camcorderList, "CC0011", "25/12/2021");
+		assertFalse("Test if the status is set to false", camcorderList.get(0).getIsAvailable());
+		
+		//Test that after loan, item status should be changed to unavailable
+		ResourceCentre.addCamcorder(camcorderList, cc1);
+		ResourceCentre.doLoanCamcorder(camcorderList, "CC0011", "25/12/2021");
+		String availability = ResourceCentre.showAvailability(camcorderList.get(0).getIsAvailable());
+		String matching = "No";
+		assertEquals(matching, availability);
 		
 	}
+
 	
 	@Test
 	public void testDoLoanChromebook() {
 		//fail("Not yet implemented");
 		// write your code here
+		// Item list is not null, so that item can be loaned
+		assertNotNull("Test if there is valid Camcorder arraylist to loan from", camcorderList);
+		
+		//Test that the item should not be available for loan after loaning
+		ResourceCentre.addChromebook(chromebookList, cb1);
+		ResourceCentre.doLoanChromebook(chromebookList, "CB0011", "25/12/2021");
+		assertFalse("Test if the status is set to false", chromebookList.get(0).getIsAvailable());
+		
+		//Test that after loan, item status should be changed to unavailable
+		ResourceCentre.addChromebook(chromebookList, cb1);
+		ResourceCentre.doLoanChromebook(chromebookList, "CB0011", "25/12/2021");
+		String availability = ResourceCentre.showAvailability(chromebookList.get(0).getIsAvailable());
+		String matching = "No";
+		assertEquals(matching, availability);
 	}
 	
 	@Test
